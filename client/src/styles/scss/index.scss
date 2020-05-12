@@ -3,3 +3,24 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  width: 100vw;
+  height: 100vh
+}
+
+// Marker Styling
+.marker-container {
+  width: 0;
+  height: 0;
+
+  .marker {
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: translate(-50%, -100%); /* keeps marker from moving around in zooming */
+    width: 24px;
+    height: 24px;
+  }
+}
