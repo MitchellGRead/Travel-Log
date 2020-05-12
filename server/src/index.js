@@ -1,6 +1,6 @@
 /**
  * Main server driver.
- * Version 1.0
+ * Version 1.0.0
  * Mitchell Read
  */
 
@@ -10,6 +10,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 
 // Import custom middlewars
@@ -25,6 +26,11 @@ require('dotenv').config({ path: `${__dirname}/.env` });
 
 
 // Connect Mongoose DB
+const dbOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+mongoose.connect(process.env.MONGO_URI, dbOptions);
 
 
 // Init external middlewares
@@ -37,7 +43,7 @@ app.use(express.json());
 
 
 // Init logs api endpoint
-// app.use('./api/log_entry', logs);
+app.use('/api/log_entry', logs);
 
 
 // Init error middlewares (init these last)
