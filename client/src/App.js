@@ -11,7 +11,8 @@ import ReactMapGL, { Popup } from 'react-map-gl';
 // Import custom components or API's
 import { getLogEntries } from './api';
 import RenderMarkers from './components/RenderMarkers';
-import PopupInfo from './components/PopupInfo'
+import PopupInfo from './components/PopupInfo';
+import AddLogEntry from './components/AddLogEntry';
 
 
 function App() {
@@ -97,7 +98,11 @@ function App() {
 
         {/* Adding a location popup */}
         {addEntryLocation !== null && (
-          <div></div>
+          <AddLogEntry 
+            data={addEntryLocation}
+            setEntryLocation={setAddEntryLocation}
+            updateEntries={getEntries}
+          />
         )}
       </ReactMapGL>
     </div>
