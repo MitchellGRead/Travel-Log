@@ -11,6 +11,7 @@ import ReactMapGL, { Popup } from 'react-map-gl';
 // Import custom components or API's
 import { getLogEntries } from './api';
 import RenderMarkers from './components/RenderMarkers';
+import PopupInfo from './components/PopupInfo'
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
 
   // Retrieves all entries from database
   const getEntries = async () => {
-    const allEntries = await getLogEntries();    
+    const allEntries = await getLogEntries();
     setLogEntries(allEntries.data);
   }
 
@@ -71,7 +72,8 @@ function App() {
         />
 
         {/* Show entry information popup */}
-        {showPopup !== null && (
+        {
+          showPopup !== null && (
           <Popup
             latitude={showPopup.latitude}
             longitude={showPopup.longitude}
@@ -86,15 +88,17 @@ function App() {
             dynamicPosition={true}
           >
             <PopupInfo 
-              
+              data={showPopup}
+              sideBar={setShowSidebar}
+              editEntry={setEditingEntry}
             />
           </Popup>
         )}
 
         {/* Adding a location popup */}
-        {/* {addEntryLocation !== null && (
-
-        )} */}
+        {addEntryLocation !== null && (
+          <div></div>
+        )}
       </ReactMapGL>
     </div>
   );
