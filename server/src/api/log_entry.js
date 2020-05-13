@@ -15,7 +15,7 @@ const LogEntry = require('../models/LogEntry');
 // Init multer middleware
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './image_uploads');
+    cb(null, `${__dirname}/image_uploads`);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);  // TODO: change this?
@@ -43,10 +43,23 @@ router.get('/get_entries', async (req, res, next) => {
 // Adds an entry to the database
 router.post('/add_entry', async (req, res, next) => {
   try {
-    const logEntry = new LogEntry(req.body);
-    const createdEntry = await logEntry.save();
+    
+    upload(req, res, (err) => {
+      if (err) {
+        console.log(err);
+        return res.json(err);
+      }
+      res.send(req.file);      
+    })
+
+    console.log(req.body);
+    
+    // const logEntry = new LogEntry(req.body);
+    // console.log(logEntry);
+    
+    // const createdEntry = await logEntry.save();
         
-    res.json(createdEntry);
+    // res.json(createdEntry);
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(422);

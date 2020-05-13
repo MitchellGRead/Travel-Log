@@ -31,6 +31,21 @@ body {
   opacity: 0.8;
 }
 
+.red-btn {
+  background-color: #C82333;
+  width: 100%;
+}
+
+.caution-btn {
+  background-color: #E0A801;
+  width: 100%;
+}
+
+.green-btn {
+  background-color: #398838;
+  width: 100%;
+}
+
 .marker-container {
   width: 0;
   height: 0;
@@ -48,14 +63,14 @@ body {
   height: 24px;
 }
 
-.popup-info > * {
-  margin-top: 10px;
-}
-
 .popup-info {
   width: 200px;
   max-width: 250px;
   padding: 3px;
+}
+
+.popup-info * {
+  margin-top: 0.3rem;
 }
 
 .popup-info h3 {
@@ -91,21 +106,6 @@ body {
           justify-content: space-evenly;
 }
 
-.popup-info .popup-buttons .delete-btn {
-  background-color: #C82333;
-  width: 100%;
-}
-
-.popup-info .popup-buttons .edit-btn {
-  background-color: #E0A801;
-  width: 100%;
-}
-
-.popup-info .popup-buttons .add-btn {
-  background-color: #398838;
-  width: 100%;
-}
-
 .mapboxgl-popup-close-button {
   margin: 0 5px 0 0;
   font-size: 1.4em;
@@ -114,5 +114,86 @@ body {
 .mapboxgl-popup-content {
   -webkit-box-shadow: 1.5px 1.5px 3px #3f3e3e;
           box-shadow: 1.5px 1.5px 3px #3f3e3e;
+}
+
+.entry-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 350px;
+}
+
+.entry-form * {
+  margin-top: 0.35rem;
+  display: block;
+  min-height: 1.5rem;
+  width: 100%;
+}
+
+.entry-form label {
+  padding-top: 0.3rem;
+}
+
+.entry-form textarea {
+  resize: none;
+}
+
+.entry-form .form-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 0.2rem 0.3rem 0;
+  padding: 0;
+}
+
+.entry-form .form-row .form-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: auto;
+}
+
+.entry-form .form-row .form-column input {
+  height: auto;
+}
+
+.entry-form .image-upload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.entry-form .image-upload * {
+  width: auto;
+  margin-right: 0.3rem;
+}
+
+.entry-form .form-btn {
+  margin: 0.3rem 0;
 }
 /*# sourceMappingURL=index.css.map */

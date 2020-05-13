@@ -28,6 +28,21 @@ body {
   }
 }
 
+.red-btn {
+  background-color: #C82333;
+  width: 100%;
+}
+
+.caution-btn {
+  background-color: #E0A801;
+  width: 100%; 
+}
+
+.green-btn {
+  background-color: #398838;
+  width: 100%;
+}
+
 // Marker Styling
 .marker-container {
   width: 0;
@@ -46,20 +61,24 @@ body {
 
 
 // Single entry popup styles
-.popup-info > * {
-  margin-top: 10px;
-}
 .popup-info {
   width: 200px;
   max-width: 250px;
   padding: 3px;
 
+  // All children
+  * {
+    margin-top: 0.3rem;
+  }
+
+  // Title
   h3 {
     text-align: center;
     text-decoration: underline;
     margin: 0;
   }
 
+  // Rating and date
   .popup-footer-info {
     display: flex;
     flex-direction: row;
@@ -71,21 +90,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
-    .delete-btn {
-      background-color: #C82333;
-      width: 100%;
-    }
-
-    .edit-btn {
-      background-color: #E0A801;
-      width: 100%; 
-    }
-
-    .add-btn {
-      background-color: #398838;
-      width: 100%;
-    }
   }
 }
 
@@ -97,3 +101,61 @@ body {
 .mapboxgl-popup-content {
   box-shadow: 1.5px 1.5px 3px #3f3e3e;
 }
+
+// Log Entry Form Styles
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+
+  // All children
+  * {
+    margin-top: 0.35rem;
+    display: block;
+    min-height: 1.5rem;
+    width: 100%;
+  }
+
+  label {
+    padding-top: 0.3rem;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  // Visit date and rating
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0.2rem 0.3rem 0 ;
+    padding: 0;
+
+    .form-column {
+      display: flex;
+      flex-direction: column;
+      width: auto;
+      input {
+        height: auto
+      }
+    }
+  }
+
+  .image-upload {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    * {
+      width: auto;
+      margin-right: 0.3rem;
+    }
+  }
+
+  .form-btn {
+    margin: 0.3rem 0;
+  }
+}
+

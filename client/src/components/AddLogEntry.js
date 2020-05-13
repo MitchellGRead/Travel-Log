@@ -1,5 +1,5 @@
 /**
- * Client UI to create a log entry that will be added to the database
+ * Renders a marker, updates entries, and displays form UI and a double click
  * Version 1.0.0
  * Mitchell Read
  */
@@ -10,6 +10,7 @@ import { Popup } from 'react-map-gl';
 
 // Import custom components
 import RenderMarkers from './RenderMarkers';
+import LogEntryForm from './LogEntryForm';
 
 
 const AddLogEntry = (props) => {
@@ -38,12 +39,14 @@ const AddLogEntry = (props) => {
        closeOnClick={false}
        onClose={() => {
          setEntryLocation(null);
-         updateEntries();
        }}
        anchor='left'
        dynamicPosition={true}
       >
-
+        {/* Render the entry form */}
+        <LogEntryForm 
+          entryData={entryData}
+        />
       </Popup>
     </React.Fragment>
   );

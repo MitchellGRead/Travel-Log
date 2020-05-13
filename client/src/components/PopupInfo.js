@@ -21,13 +21,13 @@ const PopupInfo = (props) => {
         <p>Visted: {new Date(entryData.visitDate).toISOString().substr(0, 10)}</p>
       </div>
       <div className='popup-buttons'>
-        <button type='button' className='btn delete-btn' onClick={() => {
+        <button type='button' className='btn red-btn' onClick={() => {
           console.log('deleted');
         }}>Delete</button>
-        <button type='button' className='btn edit-btn' onClick={() => {
+        <button type='button' className='btn caution-btn' onClick={() => {
           console.log('edited');
         }}>Edit</button>
-        <button type='button' className='btn add-btn' disabled>Add</button>
+        <button type='button' className='btn green-btn' disabled>Add</button>
       </div>
     </div>
   );

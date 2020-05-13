@@ -9,6 +9,11 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:4000';
 
-export function getLogEntries() {
-  return axios.get(`${API_URL}/api/log_entry/get_entries`);
+export async function getLogEntries() {
+  return await axios.get(`${API_URL}/api/log_entry/get_entries`);
+}
+
+export function addLogEntry(entry) {
+  const response = axios.post(`${API_URL}/api/log_entry/add_entry`, entry);
+  return response;
 }
