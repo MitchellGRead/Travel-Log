@@ -12,8 +12,10 @@ import { deleteLogEntry } from '../api';
 
 const PopupInfo = (props) => {
   const entryData = props.data;
-  const showSidebar = props.showSidebar;
   const editEntry = props.editEntry;
+
+  console.log(entryData);
+  
 
   return (
     <div className='popup-info'>

@@ -89,10 +89,10 @@ function App() {
           >
             <PopupInfo 
               data={showPopup}
-              sideBar={setShowSidebar}
               editEntry={setEditingEntry}
               onClose={() => {
                 setShowPopup(null);
+                setShowSidebar(false);  
                 getEntries();
               }}
             />

@@ -7,6 +7,7 @@
 // Import external libraries/dependencies
 const { Router } = require('express');
 const multer = require('multer');
+const fs = require('fs');
 
 // Import custom libraries/dependencies
 const LogEntry = require('../models/LogEntry');
@@ -57,13 +58,20 @@ router.post('/add_entry', upload.array('images'), async (req, res, next) => {
 });
 
 
-// Deletes an entry by its mongo _id from the database
+// Deletes an entry by its mongo _id from the database and its correspondign images
 router.post('/delete_entry', async (req, res, next) => {
   try {
-    // Add in deleting image files
-    console.log(req.body);
+    // Delete the images
+    req.body.images.forEach(image => {
+      fs.unlink(`${__dirname}/image_uploads/${image}`, (error) => {
+        if (error) {
+          console.log(`${image} does not exist in image_uploads`);
+          
+        }
+      });
+    })
     
-    // res.json({});
+    // Delete database entry
     const entry = await LogEntry.findByIdAndDelete(req.body._id);
     res.json(entry);    
   } catch (error) {
