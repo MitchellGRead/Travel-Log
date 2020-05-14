@@ -22,10 +22,9 @@ const LogEntryForm = (props) => {
 
   const onSubmit = (data) => {
     try {
-      // setLoading(true);
+      setLoading(true);
       // Extract files from FileList
       data.images = Object.keys(data.images).map(key => data.images[key]);
-      console.log(data);
       
       const sendMe = new FormData();
 
@@ -39,7 +38,7 @@ const LogEntryForm = (props) => {
       sendMe.append('longitude', entryData.longitude);
 
       addLogEntry(sendMe);
-      props.onClose();
+      props.onClose();      
     } catch (error) {
       console.error(error);
       setError(error);

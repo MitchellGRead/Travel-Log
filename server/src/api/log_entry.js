@@ -21,8 +21,6 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname);  // TODO: change this?
   },
 });
-
-// const upload = multer({ storage: storage }).array('images');  // images: name of file input on form
 const upload = multer({ storage: storage });
 
 // Init routes
@@ -43,36 +41,13 @@ router.get('/get_entries', async (req, res, next) => {
 // Adds an entry to the database
 router.post('/add_entry', upload.array('images'), async (req, res, next) => {
   try {
-    // saveEntry = upload(req, res, (err) => {
-    //   if (err) {
-    //     console.error(err);
-    //     throw Error(err);
-    //   }
-      
-    //   // Save the photo filenames that are saved to ./image_uploads
-    //   req.body.images = req.files.map(file => file.filename);
-    
-    //   return req.body;
-    //   // const logEntry = new LogEntry(req.body);
-    // });
-    
-    
     req.body.images = req.files.map(file => file.filename);
     req.body.visitDate = new Date(req.body.visitDate);
-    data = {};
-    Object.keys(req.body).forEach(key => {
-      data[key] = req.body[key];
-    });
 
-    const logEntry = new LogEntry(data);
-    console.log(logEntry);
-    
+    const logEntry = new LogEntry(req.body);    
     const createdEntry = await logEntry.save();
-
-    console.log(createdEntry);
     
     res.json(createdEntry);
-        
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(422);
