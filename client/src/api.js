@@ -13,7 +13,7 @@ export async function getLogEntries() {
   return await axios.get(`${API_URL}/api/log_entry/get_entries`);
 }
 
-export function addLogEntry(entry) {
-  const response = axios.post(`${API_URL}/api/log_entry/add_entry`, entry);
+export async function addLogEntry(entry) {
+  const response = await axios.post(`${API_URL}/api/log_entry/add_entry`, entry);
   return response;
 }

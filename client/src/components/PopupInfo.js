@@ -27,7 +27,7 @@ const PopupInfo = (props) => {
         <button type='button' className='btn caution-btn' onClick={() => {
           console.log('edited');
         }}>Edit</button>
-        <button type='button' className='btn green-btn' disabled>Add</button>
+        <button type='button' className='btn green-btn' disabled={true}>Add</button>
       </div>
     </div>
   );

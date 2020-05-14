@@ -128,7 +128,7 @@ body {
   .form-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 0 0.2rem 0.3rem 0 ;
     padding: 0;
 
@@ -136,6 +136,7 @@ body {
       display: flex;
       flex-direction: column;
       width: auto;
+      margin-right: 0.4rem;
       input {
         height: auto
       }

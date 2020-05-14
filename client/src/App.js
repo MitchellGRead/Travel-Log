@@ -73,8 +73,7 @@ function App() {
         />
 
         {/* Show entry information popup */}
-        {
-          showPopup !== null && (
+        {showPopup !== null && (
           <Popup
             latitude={showPopup.latitude}
             longitude={showPopup.longitude}

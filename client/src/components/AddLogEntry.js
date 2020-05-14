@@ -46,6 +46,10 @@ const AddLogEntry = (props) => {
         {/* Render the entry form */}
         <LogEntryForm 
           entryData={entryData}
+          onClose={() => {
+            setEntryLocation(null);
+            updateEntries();
+          }}
         />
       </Popup>
     </React.Fragment>
