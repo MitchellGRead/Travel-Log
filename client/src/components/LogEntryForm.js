@@ -20,7 +20,7 @@ const LogEntryForm = (props) => {
   const { register, handleSubmit } = useForm();
   const entryData = props.entryData;
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     try {
       setLoading(true);
       // Extract files from FileList
@@ -37,7 +37,7 @@ const LogEntryForm = (props) => {
       sendMe.append('latitude', entryData.latitude);
       sendMe.append('longitude', entryData.longitude);
 
-      addLogEntry(sendMe);
+      await addLogEntry(sendMe);
       props.onClose();      
     } catch (error) {
       console.error(error);

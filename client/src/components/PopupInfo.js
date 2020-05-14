@@ -7,6 +7,9 @@
 // Import external libraries/dependencies
 import React from 'react';
 
+// Import custom components or dependencies
+import { deleteLogEntry } from '../api';
+
 const PopupInfo = (props) => {
   const entryData = props.data;
   const showSidebar = props.showSidebar;
@@ -21,8 +24,9 @@ const PopupInfo = (props) => {
         <p>Visted: {new Date(entryData.visitDate).toISOString().substr(0, 10)}</p>
       </div>
       <div className='popup-buttons'>
-        <button type='button' className='btn red-btn' onClick={() => {
-          console.log('deleted');
+        <button type='button' className='btn red-btn' onClick={async () => {
+          await deleteLogEntry(entryData);
+          props.onClose();
         }}>Delete</button>
         <button type='button' className='btn caution-btn' onClick={() => {
           console.log('edited');

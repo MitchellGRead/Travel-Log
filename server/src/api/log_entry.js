@@ -60,7 +60,11 @@ router.post('/add_entry', upload.array('images'), async (req, res, next) => {
 // Deletes an entry by its mongo _id from the database
 router.post('/delete_entry', async (req, res, next) => {
   try {
-    const entry = await LogEntry.findByIdAndDelete(req.body.deleteEntryId);
+    // Add in deleting image files
+    console.log(req.body);
+    
+    // res.json({});
+    const entry = await LogEntry.findByIdAndDelete(req.body._id);
     res.json(entry);    
   } catch (error) {
     next(error);

@@ -17,3 +17,8 @@ export async function addLogEntry(entry) {
   const response = await axios.post(`${API_URL}/api/log_entry/add_entry`, entry);
   return response;
 }
+
+export async function deleteLogEntry(entry) {
+  const response = await axios.post(`${API_URL}/api/log_entry/delete_entry`, entry);
+  return response;
+}
