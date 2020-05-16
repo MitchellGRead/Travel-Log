@@ -17,7 +17,7 @@ const PopupInfo = (props) => {
 
   return (
     <div className='popup-info'>
-      <h3>{entryData.title}</h3>
+      <h3 className='popup-title'>{entryData.title}</h3>
       <p>{entryData.comment}</p>
       <div className='popup-footer-info'>
         <p>Rating: {entryData.rating}</p>

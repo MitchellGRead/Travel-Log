@@ -14,7 +14,7 @@ const RenderMarkers = (props) => {
   const showPopup = props.entryToShow;
   const showSidebar = props.showSidebar;
   const markerColor = props.markerColor;
-  
+
   return (
     logEntries.map(entry => (
       <Marker

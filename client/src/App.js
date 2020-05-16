@@ -11,15 +11,16 @@ import ReactMapGL, { Popup } from 'react-map-gl';
 // Import custom components or API's
 import { getLogEntries } from './api';
 import RenderMarkers from './components/RenderMarkers';
-import PopupInfo from './components/PopupInfoDisplay';
+import PopupInfoDisplay from './components/PopupInfoDisplay';
 import AddLogEntry from './components/AddLogEntry';
+import Sidebar from './components/Sidebar';
 
 
 function App() {
   // Define state hooks
   const [logEntries, setLogEntries] = useState([]);
   const [showPopup, setShowPopup] = useState(null);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
   const [viewport, setViewport] = useState({
     latitude: 54.5260,
@@ -50,7 +51,6 @@ function App() {
     });
   };
 
-
   return (
     <div>
       {/* Render the map */}
@@ -72,6 +72,12 @@ function App() {
           markerColor='rgb(228, 149, 74)'
         />
 
+        {/* Render in the sidebar */}
+        <Sidebar 
+          action={showSidebar}
+          data={showPopup}
+        />
+
         {/* Show entry information popup */}
         {showPopup !== null && (
           <Popup
@@ -86,13 +92,14 @@ function App() {
             anchor='left'
             dynamicPosition={true}
           >
-            <PopupInfo 
+            <PopupInfoDisplay 
               data={showPopup}
               onClose={() => {
                 setShowPopup(null);
                 setShowSidebar(false);  
                 getEntries();
               }}
+              showSidebar={setShowSidebar}
             />
           </Popup>
         )}
