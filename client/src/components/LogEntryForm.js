@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Import custom API endpoints or components
-import { addLogEntry } from '../api';
+import { addLogEntry, editLogEntry } from '../api';
 
 const LogEntryForm = (props) => {
   // Define any state variables
@@ -19,13 +19,20 @@ const LogEntryForm = (props) => {
   // Define constants
   const { register, handleSubmit } = useForm();
   const entryData = props.entryData;
+  const formType = props.formType;
 
   const onSubmit = async (data) => {
     try {
       setLoading(true);
+
       // Extract files from FileList
-      data.images = Object.keys(data.images).map(key => data.images[key]);
-      
+      // This is a short fix until editing images is allowed as well
+      if (data.images) {
+        data.images = Object.keys(data.images).map(key => data.images[key]);
+      } else {
+        data.images = [...entryData.images];
+      }
+
       const sendMe = new FormData();
 
       // Add form fields to FormData object
@@ -36,8 +43,20 @@ const LogEntryForm = (props) => {
       sendMe.append('rating', data.rating);
       sendMe.append('latitude', entryData.latitude);
       sendMe.append('longitude', entryData.longitude);
-
-      await addLogEntry(sendMe);
+      
+      switch (formType) {
+        case 'edit':
+          sendMe.append('_id', entryData._id);
+          await editLogEntry(sendMe);
+          break;
+        case 'submit':
+          await addLogEntry(sendMe);
+          break;
+        default: 
+          if (process.env.NODE_ENV === 'development') {
+            console.error(`${formType} is an invalid form type.`)
+          };
+      };
       props.onClose();      
     } catch (error) {
       console.error(error);
@@ -63,10 +82,12 @@ const LogEntryForm = (props) => {
         <label htmlFor='comment'>Comments</label>
         <textarea name='comment' placeholder='Enter a comment or two' rows={3} defaultValue={comment} ref={register}/>
 
-        <div className='image-upload'>
-          <label htmlFor='images'>Images</label>
-          <input type='file' accept='image/png image/jpeg' name='images' multiple ref={register}/>
-        </div>
+        {formType === 'submit' && (
+          <div className='image-upload'>
+            <label htmlFor='images'>Images</label>
+            <input type='file' accept='image/png image/jpeg' name='images' multiple ref={register}/>
+          </div>
+        )}
 
         <div className='form-row'>
           <div className='form-column'>

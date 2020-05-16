@@ -50,6 +50,7 @@ const AddLogEntry = (props) => {
             setEntryLocation(null);
             updateEntries();
           }}
+          formType='submit'
         />
       </Popup>
     </React.Fragment>
@@ -57,8 +58,3 @@ const AddLogEntry = (props) => {
 };
 
 export default AddLogEntry;
-
-
-// data = { addEntryLocation }
-// setEntryLocation = { setAddEntryLocation }
-// updateEntries = { getEntries }

@@ -40,6 +40,7 @@ router.get('/get_entries', async (req, res, next) => {
 
 
 // Adds an entry to the database
+// This recieves a FormData object, uses multer to parse it
 router.post('/add_entry', upload.array('images'), async (req, res, next) => {
   try {
     req.body.images = req.files.map(file => file.filename);
@@ -59,6 +60,7 @@ router.post('/add_entry', upload.array('images'), async (req, res, next) => {
 
 
 // Deletes an entry by its mongo _id from the database and its correspondign images
+// This recieves a JSON object and utilizes express.json() middleware
 router.post('/delete_entry', async (req, res, next) => {
   try {
     // Delete the images
@@ -79,9 +81,12 @@ router.post('/delete_entry', async (req, res, next) => {
 });
 
 
-// Updates an entry by its mongo _id from the database with new data sent via the body
-router.post('/update_entry', async (req, res, next) => {
+// Edits an entry by its mongo _id from the database with new data sent via the body
+// This recieves a FormData object, uses multer to parse it
+router.post('/edit_entry', upload.array('images'), async (req, res, next) => {
   try {
+    req.body.visitDate = new Date(req.body.visitDate);
+    
     const entry = await LogEntry.findByIdAndUpdate(req.body._id, req.body, { useFindAndModify: false });
     res.json(entry);
   } catch (error) {

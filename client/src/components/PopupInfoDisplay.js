@@ -23,8 +23,8 @@ const PopupInfoDisplay = (props) => {
       entryData={entryData}
       onClose={() => {
         props.onClose();
-        setEditingEntry(false);
       }}
+      formType='edit'
     />) : (
     <PopupInfo 
       entryData={entryData}

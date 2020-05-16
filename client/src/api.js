@@ -22,3 +22,8 @@ export async function deleteLogEntry(entry) {
   const response = await axios.post(`${API_URL}/api/log_entry/delete_entry`, entry);
   return response;
 }
+
+export async function editLogEntry(entry) {
+  const response = await axios.post(`${API_URL}/api/log_entry/edit_entry`, entry);
+  return response;
+}
