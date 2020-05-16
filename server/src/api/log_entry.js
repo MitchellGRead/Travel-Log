@@ -65,8 +65,7 @@ router.post('/delete_entry', async (req, res, next) => {
     req.body.images.forEach(image => {
       fs.unlink(`${__dirname}/image_uploads/${image}`, (error) => {
         if (error) {
-          console.log(`${image} does not exist in image_uploads`);
-          
+          console.log(`${image} - ${error}`);
         }
       });
     })

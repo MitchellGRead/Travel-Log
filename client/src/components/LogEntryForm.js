@@ -45,15 +45,23 @@ const LogEntryForm = (props) => {
     }
   }
 
+  // Setting the default values 
+  const title = entryData.title === undefined ? '' : entryData.title;
+  const comment = entryData.comment === undefined ? '' : entryData.comment;
+  const visitDate = entryData.visitDate === undefined ? 
+    new Date().toISOString().substr(0, 10) : 
+    new Date(entryData.visitDate).toISOString().substr(0, 10);
+  const rating = entryData.rating === undefined ? 5 : entryData.rating;
+  
   return (
     <div className='log-entry-form-container'>
       <form onSubmit={handleSubmit(onSubmit)} className='entry-form' encType='multipart/form-data'>
         {error ? <h3>{error}</h3> : null}
         <label htmlFor='title'>Title</label>
-        <input required name='title' placeholder='Where did you go?' ref={register}/>
+        <input required name='title' placeholder='Where did you go?' defaultValue={title} ref={register}/>
 
         <label htmlFor='comment'>Comments</label>
-        <textarea name='comment' placeholder='Enter a comment or two' rows={3} ref={register}/>
+        <textarea name='comment' placeholder='Enter a comment or two' rows={3} defaultValue={comment} ref={register}/>
 
         <div className='image-upload'>
           <label htmlFor='images'>Images</label>
@@ -63,12 +71,12 @@ const LogEntryForm = (props) => {
         <div className='form-row'>
           <div className='form-column'>
             <label htmlFor='visitDate'>Visit Date</label>
-            <input required type='date' name='visitDate' defaultValue={new Date().toISOString().substr(0, 10)} ref={register}/>
+            <input required type='date' name='visitDate' defaultValue={visitDate} ref={register}/>
           </div>
           
           <div className='form-column'>
             <label htmlFor='rating'>Rating</label>
-            <input type='number' name='rating' min={1} max={10} defaultValue={5} ref={register}/>
+            <input type='number' name='rating' min={1} max={10} defaultValue={rating} ref={register}/>
           </div>
         </div>
 

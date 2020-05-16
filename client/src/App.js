@@ -11,7 +11,7 @@ import ReactMapGL, { Popup } from 'react-map-gl';
 // Import custom components or API's
 import { getLogEntries } from './api';
 import RenderMarkers from './components/RenderMarkers';
-import PopupInfo from './components/PopupInfo';
+import PopupInfo from './components/PopupInfoDisplay';
 import AddLogEntry from './components/AddLogEntry';
 
 
@@ -21,7 +21,6 @@ function App() {
   const [showPopup, setShowPopup] = useState(null);
   const [showSidebar, setShowSidebar] = useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
-  const [editingEntry, setEditingEntry] = useState(false);
   const [viewport, setViewport] = useState({
     latitude: 54.5260,
     longitude: -105.2551,
@@ -61,6 +60,7 @@ function App() {
         height='100vh'
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        // mapStyle='mapbox://styles/mapbox/satellite-streets-v11'
         doubleClickZoom={false}
         onDblClick={showAddMarkerPopup}
       >
@@ -82,14 +82,12 @@ function App() {
             onClose={() => {
               setShowPopup(null);
               setShowSidebar(false);
-              setEditingEntry(false);
             }}
             anchor='left'
             dynamicPosition={true}
           >
             <PopupInfo 
               data={showPopup}
-              editEntry={setEditingEntry}
               onClose={() => {
                 setShowPopup(null);
                 setShowSidebar(false);  

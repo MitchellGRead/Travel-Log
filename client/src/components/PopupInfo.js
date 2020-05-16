@@ -1,5 +1,5 @@
 /**
- * Displays an entries information when its marker is selected
+ * Displays information on the selected popup
  * Version 1.0.0
  * Mitchell Read
  */
@@ -7,15 +7,13 @@
 // Import external libraries/dependencies
 import React from 'react';
 
-// Import custom components or dependencies
+// Import custom components or API
 import { deleteLogEntry } from '../api';
 
-const PopupInfo = (props) => {
-  const entryData = props.data;
-  const editEntry = props.editEntry;
 
-  console.log(entryData);
-  
+const PopupInfo = (props) => {
+  const entryData = props.entryData;
+  const editEntry = props.editEntry;
 
   return (
     <div className='popup-info'>
@@ -31,9 +29,9 @@ const PopupInfo = (props) => {
           props.onClose();
         }}>Delete</button>
         <button type='button' className='btn caution-btn' onClick={() => {
-          console.log('edited');
+          editEntry(true);
         }}>Edit</button>
-        <button type='button' className='btn green-btn' disabled={true}>Add</button>
+        {/* <button type='button' className='btn green-btn' disabled={true}>Add</button> */}
       </div>
     </div>
   );
