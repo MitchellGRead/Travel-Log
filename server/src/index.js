@@ -40,6 +40,7 @@ app.use(morgan('common'));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use('/image_uploads', express.static(`${__dirname}/api/image_uploads`));
 
 
 // Init logs api endpoint

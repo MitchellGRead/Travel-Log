@@ -20,7 +20,7 @@ function App() {
   // Define state hooks
   const [logEntries, setLogEntries] = useState([]);
   const [showPopup, setShowPopup] = useState(null);
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
   const [viewport, setViewport] = useState({
     latitude: 54.5260,
@@ -31,7 +31,7 @@ function App() {
 
   // Retrieves all entries from database
   const getEntries = async () => {
-    const allEntries = await getLogEntries();
+    const allEntries = await getLogEntries();    
     setLogEntries(allEntries.data);
   }
 

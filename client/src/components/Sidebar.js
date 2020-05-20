@@ -5,32 +5,53 @@
  */
 
 // Import external libraries/dependencies
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+// Custom components or API
+import { getImages } from '../api';
 
 
 const Sidebar = (props) => {
-  const sidebarAction = props.action ? 'enter' : 'exit';
-  const entryData = props.data;
-  console.log(props.action);
+  const [imageUrls, setImageUrls] = useState([]);
+
+  const sidebarAction = props.action ? 'enter' : 'exit';  // animated via css
+  console.log(sidebarAction);
   
+  const entryData = props.data;
+
+  // Function to get image addresses from the serer
+  const getImageAddress = async (entryData) => {
+    const pathes = await getImages(entryData.images);
+    setImageUrls(pathes.data);
+  }
+
+  useEffect(() => {    
+    if (entryData && entryData.images.length > 0) {
+      console.log(entryData);
+      
+      getImageAddress(entryData);    
+    }
+  }, [entryData]);
+  
+  let images = null;
+  if (entryData && entryData.images.length > 0) {
+
+    images = imageUrls.map((imageUrl, idx) => {
+      return (<li key={`${entryData._id}-${idx}`}>
+        <img
+          className='sidebar-img'
+          src={imageUrl}
+          alt={`${entryData.title}-${entryData.visitDate}`}
+        /></li>);
+    });    
+  }
 
   return (
     <div className={`sidebar sidebar-${sidebarAction}`}>
       <div className='entry-images'>
-        <h3 className='image-title'>2020-01-01</h3>
+        {images !== null && <h3 className='image-title'>{new Date(entryData.visitDate).toISOString().substr(0, 10)}</h3>}
         <ul>
-          <li>
-            <img 
-              className='sidebar-img'
-              src='https://www.tourismvictoria.com/sites/default/files/victoria_inner_harbour_flowers.jpg' 
-              alt='thing' 
-            />
-            <img 
-              className='sidebar-img'
-              src='https://www.tourismvictoria.com/sites/default/files/victoria_inner_harbour_flowers.jpg' 
-              alt='thing' 
-            />
-          </li>
+          {images}
         </ul>
       </div>
     </div>

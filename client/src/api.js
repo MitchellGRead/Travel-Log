@@ -1,6 +1,6 @@
 /**
  * Used to communicate with backend server on the /api/logs endpoint using axios
- * Version 1.0.0
+ * Version 1.4.0
  * Mitchell Read
  */
 
@@ -13,17 +13,18 @@ export async function getLogEntries() {
   return await axios.get(`${API_URL}/api/log_entry/get_entries`);
 }
 
+export async function getImages(images) {  
+  return await axios.get(`${API_URL}/api/log_entry/get_images/${images.join(',')}`);
+}
+
 export async function addLogEntry(entry) {
-  const response = await axios.post(`${API_URL}/api/log_entry/add_entry`, entry);
-  return response;
+  return await axios.post(`${API_URL}/api/log_entry/add_entry`, entry);
 }
 
 export async function deleteLogEntry(entry) {
-  const response = await axios.post(`${API_URL}/api/log_entry/delete_entry`, entry);
-  return response;
+  return await axios.post(`${API_URL}/api/log_entry/delete_entry`, entry);
 }
 
 export async function editLogEntry(entry) {
-  const response = await axios.post(`${API_URL}/api/log_entry/edit_entry`, entry);
-  return response;
+  return await axios.post(`${API_URL}/api/log_entry/edit_entry`, entry);
 }

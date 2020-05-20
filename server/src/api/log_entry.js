@@ -36,7 +36,23 @@ router.get('/get_entries', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
+
+// Get images associated with an entry
+router.get('/get_images/:images', (req, res, next) => {
+  try {
+    const port = process.env.PORT || 1337;
+    const addr = process.env.SERVER_ADDR || 'localhost';
+    const serverUrl = `http://${addr}:${port}`
+
+    const images = req.params.images.split(',');
+    const imagePaths = images.map(image => `${serverUrl}/image_uploads/${image}`);
+    
+    res.json(imagePaths);
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 // Adds an entry to the database
@@ -92,7 +108,7 @@ router.post('/edit_entry', upload.array('images'), async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
 
 
 // Export router
