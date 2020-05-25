@@ -203,7 +203,7 @@ body {
   width: 250px;
   position: absolute;
   top: 0;
-  background-color: none;
+  background-color: transparent;
   -webkit-transition: -webkit-transform 0.5s ease-out;
   transition: -webkit-transform 0.5s ease-out;
   transition: transform 0.5s ease-out;
@@ -243,6 +243,10 @@ body {
   list-style: none;
 }
 
+.sidebar .entry-images ul:first-child {
+  margin: 0;
+}
+
 .sidebar .entry-images li {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -262,10 +266,6 @@ body {
   height: auto;
   margin-top: 0.7rem;
   border-radius: 5px;
-}
-
-.sidebar .entry-images li .sidebar-img:first-child {
-  margin-top: 0;
 }
 
 .sidebar-exit {

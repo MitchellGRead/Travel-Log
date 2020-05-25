@@ -60,7 +60,7 @@ function App() {
         height='100vh'
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        // mapStyle='mapbox://styles/mapbox/satellite-streets-v11'
+        mapStyle='mapbox://styles/mapbox/outdoors-v11'
         doubleClickZoom={false}
         onDblClick={showAddMarkerPopup}
       >
@@ -69,7 +69,7 @@ function App() {
           data={logEntries}
           entryToShow={setShowPopup}
           showSidebar={setShowSidebar}
-          markerColor='rgb(228, 149, 74)'
+          markerColor='rgb(29, 42, 223)'
         />
 
         {/* Render in the sidebar */}
@@ -99,7 +99,6 @@ function App() {
                 setShowSidebar(false);  
                 getEntries();
               }}
-              showSidebar={setShowSidebar}
             />
           </Popup>
         )}

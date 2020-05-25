@@ -15,8 +15,6 @@ const Sidebar = (props) => {
   const [imageUrls, setImageUrls] = useState([]);
 
   const sidebarAction = props.action ? 'enter' : 'exit';  // animated via css
-  console.log(sidebarAction);
-  
   const entryData = props.data;
 
   // Function to get image addresses from the serer
@@ -27,8 +25,6 @@ const Sidebar = (props) => {
 
   useEffect(() => {    
     if (entryData && entryData.images.length > 0) {
-      console.log(entryData);
-      
       getImageAddress(entryData);    
     }
   }, [entryData]);
